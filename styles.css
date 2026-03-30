@@ -1,101 +1,178 @@
-body {
-    font-family: Arial, sans-serif;
+:root {
+    --primary: #2563eb;
+    --secondary: #1e40af;
+    --background: #f8fafc;
+    --text: #1e293b;
+    --light: #f1f5f9;
+    --dark: #0f172a;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+* {
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    overflow: hidden;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
 
-.container {
+.app {
     width: 375px;
     height: 700px;
     background-color: white;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
     overflow: hidden;
-    position: relative;
     display: flex;
     flex-direction: column;
 }
 
 .header {
-    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
-    padding: 15px;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.account-info {
+.account {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    gap: 0.25rem;
 }
 
 .balance {
-    font-size: 18px;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
-.click-area {
+.main {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #48cae4, #0077b6);
-    cursor: pointer;
+    background: linear-gradient(135deg, var(--light), #e2e8f0);
     position: relative;
     overflow: hidden;
 }
 
-.click-area::before {
-    content: "";
+.click-zone {
+    width: 250px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: var(--transition);
+    border: 3px solid white;
+}
+
+.click-zone:active {
+    transform: scale(0.95);
+}
+
+.click-value {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.75rem 0;
+    background-color: white;
+    border-top: 1px solid #e2e8f0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text);
+}
+
+.nav-item.active {
+    color: var(--primary);
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+.nav-item p {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.section-content {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon fill="rgba(255,255,255,0.1)" points="0,100 100,70 100,100"/><polygon fill="rgba(255,255,255,0.1)" points="0,30 100,0 100,30"/></svg>') repeat;
-    background-size: 100px 100px;
-    opacity: 0.3;
-}
-
-#clickValue {
-    font-size: 24px;
-    color: white;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px 20px;
-    border-radius: 10px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
 }
 
-.menu {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 0;
+.section-box {
     background-color: white;
-    border-top: 1px solid #eee;
-}
-
-.menu-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    max-width: 80%;
     text-align: center;
-    padding: 5px;
+    box-shadow: var(--shadow);
 }
 
-.menu-item img {
-    width: 30px;
-    height: 30px;
+.close-btn {
+    background-color: var(--danger);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: var(--transition);
 }
 
-.menu-item p {
-    margin: 5px 0 0;
-    font-size: 12px;
+.close-btn:hover {
+    background-color: #dc2626;
 }
